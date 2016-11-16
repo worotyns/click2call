@@ -2,7 +2,7 @@
   "name": "telecube-click2call",
   "version": "1.0.0",
   "description": "Telecube integration for click2call voice connections",
-  "main": "server/index.js",
+  "main": "src/server/index.js",
   "dependencies": {
     "express": "^4.14.0"
   },
