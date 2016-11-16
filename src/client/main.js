@@ -4,7 +4,7 @@
  */
 
 var Click2Call = (function (config, window, document) {
-  
+
   /**
    * Helpers
    */
@@ -15,7 +15,7 @@ var Click2Call = (function (config, window, document) {
   /**
    * Click2Call
    */
-  var Click2Call = function() {
+  var Click2Call = function () {
     this.modalTimer = null;
     this.blocked = false;
   }
@@ -36,10 +36,10 @@ var Click2Call = (function (config, window, document) {
     var elements = document.getElementsByClassName('c2c-status');
     var i;
     for (i = 0; i < elements.length; i++) {
-        elements[i].classList.toggle('hide', true);
+      elements[i].classList.toggle('hide', true);
     }
 
-    var statusEl = getEl('c2c-status-'+status);
+    var statusEl = getEl('c2c-status-' + status);
     statusEl.classList.remove('hide');
   }
 
@@ -59,17 +59,17 @@ var Click2Call = (function (config, window, document) {
         onFail(xmlhttp.responseText);
       }
     }
-    xmlhttp.send(JSON.stringify({phone: phone}));
+    xmlhttp.send(JSON.stringify({ phone: phone }));
   }
 
   Click2Call.prototype.bindModal = function bindModal(delayed) {
     var self = this;
-    if(delayed) {
+    if (delayed) {
       this.modalTimer = setTimeout(self.showModal.bind(self), delayed || 0);
     }
     const el = getEl(config.modal.button.id);
     el.addEventListener('click', function () {
-      if(self.blocked) return;
+      if (self.blocked) return;
       self.lock();
       self.status('loading');
       var inputEl = getEl(config.modal.input.id);
@@ -96,7 +96,7 @@ var Click2Call = (function (config, window, document) {
     })
 
     el.addEventListener('keypress', function onReturn(e) {
-      if(e.which === 13) {
+      if (e.which === 13) {
         btnEl.dispatchEvent(new CustomEvent('click'));
       }
     })
@@ -104,27 +104,28 @@ var Click2Call = (function (config, window, document) {
 
   Click2Call.prototype.closeModal = function closeModal() {
     const el = getEl(config.modal.id);
-    el.classList.toggle(config.modal.class, true);    
-  }  
+    el.classList.toggle(config.modal.class, true);
+  }
 
   Click2Call.prototype.showButton = function showButton(delayed) {
     var self = this;
-    setTimeout(function() {
+    setTimeout(function () {
       const el = getEl(config.button.id);
+      if (el) { 
+        el.addEventListener('click', function () {
+          if (self.modalTimer) clearInterval(self.modalTimer);
+          self.showModal();
+        });
 
-      el.addEventListener('click', function () {
-        if(self.modalTimer) clearInterval(self.modalTimer);
-        self.showModal();
-      });
-
-      el.classList.toggle(config.button.class);
+        el.classList.toggle(config.button.class);
+      }
     }, delayed);
   }
 
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const instance = new Click2Call();
-    instance.showButton(config.button.delay || 0);
+    if (config.button) instance.showButton(config.button.delay || 0);
     instance.bindModal(config.modal.delay || 0);
   });
 

@@ -29,52 +29,52 @@
             </div>
 
         </div>
+        <a href="#" class="c2c-btn hide" id="c2c-btn"></a>
+        <!--Click 2 call script start-->
         <script>
             var c2cconfig = {
                 apiUrl: 'http://localhost:3000/call',
-                delay: 0, //Delay to show icon;
                 call: {
-                onSuccess: function(response) {
-                    var self = this;
-                    this.status('ok');
-                    setTimeout(function() {
-                    self.closeModal();
-                    }, 5000)
-                    console.log(response); //on success handler
-                },
-                onFail: function(error) {
-                    var self = this;
-                    this.status('error');
-                    this.unlock();
-                    setTimeout(function() {
-                    self.closeModal();
-                    }, 5000)
-                    console.log(error) // on error handler
-                }
+                    onSuccess: function(response) {
+                        var self = this;
+                        this.status('ok');
+                        setTimeout(function() {
+                            self.closeModal();
+                        }, 5000)
+                        console.log(response); //on success handler
+                    },
+                    onFail: function(error) {
+                        var self = this;
+                        this.status('error');
+                        this.unlock();
+                        setTimeout(function() {
+                            self.closeModal();
+                        }, 5000)
+                        console.log(error) // on error handler
+                    }
                 },
                 modal: {
-                id: "c2c-modal", //on id element
-                delay: 1000, // 0 disabled
-                class: "hide",
-                input: {
-                    //Trigger when click to button
-                    id: "c2c-input", //on id element
-                    regexp: new RegExp(/^[0-9\-\+]{9,15}$/)
-                },
-                button: {
-                    id: "c2c-call", //make call button id
-                }
+                    id: "c2c-modal", //on id element
+                    delay: 2000, // 0 disabled
+                    class: "hide",
+                    input: {
+                        //Trigger when click to button
+                        id: "c2c-input", //on id element
+                        regexp: new RegExp(/^[0-9\-\+]{9,15}$/)
+                    },
+                    button: {
+                        id: "c2c-call", //make call button id
+                    }
                 },
                 button: {
                 //Showed id
-                id: "c2c-btn",
-                delay: 500, //After delay
-                class: "hide" //Toggle class when trigger
+                    id: "c2c-btn",
+                    delay: 4000, //After delay
+                    class: "hide" //Toggle class when trigger
                 }
             };
         </script>
         <script src="/main.js"></script>
-
-        <a href="#" class="c2c-btn hide" id="c2c-btn"></a>
+        <!--click 2 call script end-->
     </body>
 </html>
