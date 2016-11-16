@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="c2c-modal hide" id="c2c-modal">
+
+            <div class="c2c-modal-backdrop"></div>
+
+            <div class="c2c-modal-box">
+                <h3>Need some help?</h3>
+                <p>Type in your number and call us:</p>
+                <input class="c2c-input" id="c2c-input"/ value="+48">
+                <a href="#" class="c2c-call" id="c2c-call">Click to call</a>
+
+                <a href="#" class="c2c-modal-close" id="c2c-modal-close"></a>
+                <p>
+                <span id="c2c-status-ok" class="c2c-status hide">Rozmowa zamówiona czekaj na połączenie, ten komunikat można zamknąć.</span>
+                <span id="c2c-status-error" class="c2c-status hide">Wystąpił problem, spróbuj jeszcze raz.</span>
+                <span id="c2c-status-validate" class="c2c-status hide">Wpisz poprawny numer telefonu (+YYXXXXXXXXX</span>
+                <span id="c2c-status-loading" class="c2c-status hide">Zamawiam rozmowę</span>
+                </p>
+            </div>
+
+        </div>
+        <script>
+            var c2cconfig = {
+                apiUrl: 'http://localhost:3000/call',
+                delay: 0, //Delay to show icon;
+                call: {
+                onSuccess: function(response) {
+                    var self = this;
+                    this.status('ok');
+                    setTimeout(function() {
+                    self.closeModal();
+                    }, 5000)
+                    console.log(response); //on success handler
+                },
+                onFail: function(error) {
+                    var self = this;
+                    this.status('error');
+                    this.unlock();
+                    setTimeout(function() {
+                    self.closeModal();
+                    }, 5000)
+                    console.log(error) // on error handler
+                }
+                },
+                modal: {
+                id: "c2c-modal", //on id element
+                delay: 1000, // 0 disabled
+                class: "hide",
+                input: {
+                    //Trigger when click to button
+                    id: "c2c-input", //on id element
+                    regexp: new RegExp(/^[0-9\-\+]{9,15}$/)
+                },
+                button: {
+                    id: "c2c-call", //make call button id
+                }
+                },
+                button: {
+                //Showed id
+                id: "c2c-btn",
+                delay: 500, //After delay
+                class: "hide" //Toggle class when trigger
+                }
+            };
+        </script>
+        <script src="/main.js"></script>
+
+        <a href="#" class="c2c-btn hide" id="c2c-btn"></a>
+    </body>
+</html>

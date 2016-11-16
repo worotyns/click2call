@@ -1,0 +1,6 @@
+{
+  "agent":  "1234567890",
+  "number": "1234567890",
+  "secret": "XXXXXXXXX",
+  "apiUrl": "http://localhost:3000/dummy"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "telecube-click2call",
+  "version": "1.0.0",
+  "description": "Telecube integration for click2call voice connections",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "node example/server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/worotyns/click2call.git"
+  },
+  "keywords": [
+    "telecube",
+    "click2call",
+    "server",
+    "proxy"
+  ],
+  "author": "Mateusz Worotyński <mateusz@pushpushgo.com> (https://pushpushgo.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/worotyns/click2call/issues"
+  },
+  "homepage": "https://github.com/worotyns/click2call#readme",
+  "devDependencies": {
+    "body-parser": "^1.15.2",
+    "request": "^2.78.0"
+  }
+}

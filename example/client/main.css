@@ -1,0 +1,206 @@
+body {
+  margin: 0;
+  background: #efefef;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.hide {
+  display: none;
+}
+
+#c2c-status-ok {
+  color: green;
+}
+
+#c2c-status-error {
+  color: red;
+}
+
+#c2c-status-loading {
+  color: darkblue;
+}
+
+#c2c-status-validate {
+  color: darkorange;
+}
+
+.c2c-modal-backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(86,86,86,0.3);
+  z-index: 99999;
+}
+
+/* Modal */
+
+.c2c-modal-box {
+  border-radius: 3px;
+  font-family: Arial, sans-serif;
+  width: 420px;
+  padding: 50px;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  margin-left: -210px;
+  background: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+  z-index: 100000;
+}
+
+.c2c-modal h3 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  line-height: 20px;
+}
+
+.c2c-modal h3 + p {
+  margin-bottom: 20px;
+}
+
+.c2c-input {
+  border-radius: 3px;
+  border: 1px solid #dedede;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  font-size: 14px;
+  width: 180px;
+  display: inline-block;
+}
+
+.c2c-call {
+  border-radius: 3px;
+  background: #16a085;
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  text-decoration: none;
+  padding: 0;
+}
+
+.c2c-disabled {
+  background: gray;
+}
+
+.c2c-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(close-icon.png) center no-repeat;
+}
+
+/* Corner button */
+
+.c2c-btn {
+  position:  fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #16a085 url(phone-icon.png) center no-repeat;
+  right: 50px;
+  bottom: 50px;
+  display: block;
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.14);
+  z-index: 100000;
+}
+
+.c2c-btn:hover {
+  -webkit-animation: phonePick 0.5s;
+  -moz-animation: phonePick 0.5s;
+  animation: phonePick 0.5s;
+}
+
+@-webkit-keyframes phonePick {
+  0% { 
+    -webkit-transform: translate(0, 0); 
+    -moz-transform: translate(0, 0); 
+    transform: translate(0, 0); 
+  }
+  25%{
+    -webkit-transform: translate(0, -6px);
+    -moz-transform: translate(0, -6px);
+    transform: translate(0, -6px);
+  }
+  50% { 
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    transform: translate(0, 0); 
+  }
+  75% { 
+    -webkit-transform: translate(0, -2px);
+    -moz-transform: translate(0, -2px);
+    transform: translate(0, -2px); 
+  }
+  100% { 
+    -webkit-transform: translate(0, 0); 
+    -moz-transform: translate(0, 0); 
+    transform: translate(0, 0); 
+  }
+}
+
+@-moz-keyframes phonePick {
+  0% { 
+    -webkit-transform: translate(0, 0); 
+    -moz-transform: translate(0, 0); 
+    transform: translate(0, 0); 
+  }
+  25%{
+    -webkit-transform: translate(0, -7px);
+    -moz-transform: translate(0, -7px);
+    transform: translate(0, -7px);
+  }
+  50% { 
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    transform: translate(0, 0); 
+  }
+  75% { 
+    -webkit-transform: translate(0, -6px);
+    -moz-transform: translate(0, -6px);
+    transform: translate(0, -6px); 
+  }
+  100% { 
+    -webkit-transform: translate(0, 0); 
+    -moz-transform: translate(0, 0); 
+    transform: translate(0, 0); 
+  }
+}
+
+@keyframes phonePick {
+  0% { 
+    -webkit-transform: translate(0, 0); 
+    -moz-transform: translate(0, 0); 
+    transform: translate(0, 0); 
+  }
+  25%{
+    -webkit-transform: translate(0, -6px);
+    -moz-transform: translate(0, -6px);
+    transform: translate(0, -6px);
+  }
+  50% { 
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    transform: translate(0, 0); 
+  }
+  75% { 
+    -webkit-transform: translate(0, -2px);
+    -moz-transform: translate(0, -2px);
+    transform: translate(0, -2px); 
+  }
+  100% { 
+    -webkit-transform: translate(0, 0); 
+    -moz-transform: translate(0, 0); 
+    transform: translate(0, 0); 
+  }
+}
