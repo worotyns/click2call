@@ -9,53 +9,61 @@ function TeleCube(options) {
   Object.assign(this, options);
 }
 
-TeleCube.prototype.check = function check(callPromise) {
-  if(!this.secret) callPromise.reject('config: secret is required');
-  if(!this.apiUrl) callPromise.reject('config: apiUrl is required');
-  if(!this.number) callPromise.reject('config: number is required');
-  return this;
+TeleCube.prototype.check = function check() {
+  if (!this.secret)
+    return 'config: secret is required';
+  if (!this.apiUrl)
+    return 'config: apiUrl is required';
+  if (!this.number)
+    return 'config: number is required';
 }
 
 TeleCube.prototype.call = function call(client) {
-  const callPromise = Promise.defer();
-  
-  this.check(callPromise);
+  const self = this;
+  return new Promise(function(resolve, reject) {
+    const err = self.validate();
 
-  const data = {
-    form: {
-      api_key: this.secret,
-      caller_id: this.number,
-      contact_a: this.agent,
-      contact_b: client,
-      set_caller_id_leg: 'ab'
-    }
-  }
+    if (err) {
+      reject(err);
+    };
 
-  const parseBody = (body) => {
-    if(typeof body === 'string') {
-      try{
-        body = JSON.parse(body);
-      }catch(e){
-        console.error(e)
-        body = body;
+    const data = {
+      form: {
+        api_key: self.secret,
+        caller_id: self.number,
+        contact_a: self.agent,
+        contact_b: client,
+        set_caller_id_leg: 'ab'
       }
     }
-    return body;
-  }
 
-  request.post(this.apiUrl, data, function (err, res, body) {
-    if(err) return callPromise.reject(err);
-    body = parseBody(body);
-    if(res.statusCode == 200 && body.error == "OK") {
-      return callPromise.resolve(body);
+    const parseBody = (body) => {
+      if (typeof body === 'string') {
+        try {
+          body = JSON.parse(body);
+        } catch(e) {
+          console.error(e)
+          body = body;
+        }
+      }
+      return body;
     }
-    return callPromise.reject(body)
-  });
 
-  return callPromise.promise;
+    request.post(self.apiUrl, data, function (err, res, body) {
+      if (err)
+        return reject(err);
+
+      body = parseBody(body);
+
+      if (res.statusCode == 200 && body.error == "OK")
+        return resolve(body);
+
+      return reject(body)
+    });
+  });
 }
 
 module.exports = function instance(options) {
-  if(!options) throw 'Bad options parameter';
+  if (!options) throw 'Bad options parameter';
   return new TeleCube(options);
 };
