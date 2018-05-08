@@ -21,7 +21,7 @@ TeleCube.prototype.check = function check() {
 TeleCube.prototype.call = function call(client) {
   const self = this;
   return new Promise(function(resolve, reject) {
-    const err = self.validate();
+    const err = self.check();
 
     if (err) {
       reject(err);
